@@ -53,3 +53,27 @@ Random Name Picker adalah alat sederhana untuk memilih nama secara acak dari daf
    ```bash
    git clone https://github.com/IE27/random-name-picker.git
 
+2. Buka folder proyek:
+    ```bash
+    cd random-name-picker
+
+3. Buka file index.html di browser Anda.
+
+
+## Teknologi yang Digunakan 🛠️
+- HTML: Struktur dasar aplikasi.
+- CSS: Styling dan tata letak.
+- JavaScript: Logika pemilihan nama acak dan manajemen data.
+- SVG: Ikon-ikon yang digunakan.
+
+## Kontribusi 🤝
+Kontribusi selalu diterima! Jika Anda ingin berkontribusi, silakan:
+
+1. Fork repositori ini.
+2. Buat branch baru (git checkout -b fitur-baru).
+3. Commit perubahan Anda (git commit -m 'Tambahkan fitur baru').
+4. Push ke branch (git push origin fitur-baru).
+5. Buat Pull Request.
+
+## Lisensi 📄
+Proyek ini dilisensikan di bawah MIT License.
