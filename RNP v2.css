@@ -1,7 +1,6 @@
 /* ==========================================================================  
    1. Base Styles & Global Adjustments
    ========================================================================== */
-
    .random-name-picker-container {
     max-width: 960px;
     margin: 0 auto;
@@ -10,7 +9,6 @@
   /* ==========================================================================  
      2. Header & Top Panel Styling
      ========================================================================== */
-  
   .header-section {
     position: relative;
     padding: 20px 25px;
@@ -25,7 +23,6 @@
     gap: 15px; /* Jarak antara elemen */
   }
   
-  
   .header-section .button-panel {
     display: flex;
     gap: 15px;
@@ -38,6 +35,9 @@
     color: #007bff;
   }
   
+  /* ==========================================================================  
+     3. Animation & Overlay Trigger Content
+     ========================================================================== */
   .animation-content {
     font-size: 36px;
     font-weight: bold;
@@ -59,10 +59,8 @@
   }
   
   /* ==========================================================================  
-     3. Info Panel
+     4. Info Panel
      ========================================================================== */
-  
-  /* Gaya untuk info panel */
   .info-panel {
     display: flex;
     flex-wrap: wrap; /* Memungkinkan elemen untuk wrap ke baris baru */
@@ -73,7 +71,6 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   
-  /* Gaya untuk setiap item di info panel */
   .info-panel div {
     font-size: 16px;
     font-weight: 500;
@@ -82,11 +79,9 @@
     gap: 8px;
   }
   
-  
   /* ==========================================================================  
-     4. Settings & Input Section
+     5. Settings & Input Section
      ========================================================================== */
-  
   .settings {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -122,7 +117,9 @@
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
   }
   
-  input:focus, select:focus, textarea:focus {
+  input:focus,
+  select:focus,
+  textarea:focus {
     outline: none;
     border-color: #28a745;
     background: #fff;
@@ -145,9 +142,8 @@
   }
   
   /* ==========================================================================  
-     5. Button Styles & Effects
+     6. Buttons & Effects
      ========================================================================== */
-  
   button {
     font-family: inherit;
     font-size: 16px;
@@ -158,7 +154,7 @@
     background-color: #007bff;
     color: #fff;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +202,7 @@
     transform: translate(-50%, -50%) scale(2);
   }
   
-  /* Gaya dasar untuk ikon SVG */
+  /* Icon Styles (digunakan di banyak komponen) */
   .icon {
     width: 1em; /* Ukuran ikon mengikuti ukuran font */
     height: 1em; /* Ukuran ikon mengikuti ukuran font */
@@ -215,54 +211,39 @@
     margin-right: 8px; /* Jarak antara ikon dan teks */
   }
   
-  /* Penyesuaian ukuran ikon di tombol */
   .tool-button .icon {
     width: 1.2em;
     height: 1.2em;
   }
   
-  /* Penyesuaian ukuran ikon di header */
   .header-section .icon {
     width: 1.5em;
     height: 1.5em;
   }
   
-  /* Penyesuaian ukuran ikon di overlay */
   .overlay-content .icon {
     width: 1.5em;
     height: 1.5em;
   }
   
-  /* Penyesuaian ukuran ikon di hasil (results) */
   .results h3 .icon {
     width: 1.5em;
     height: 1.5em;
   }
   
-  /* Penyesuaian ukuran ikon di info panel */
-  .info-panel .icon {
-    width: 1.2em;
-    height: 1.2em;
-  }
-  
-  /* Penyesuaian ukuran ikon di settings */
-  .settings .icon {
-    width: 1.2em;
-    height: 1.2em;
-  }
-  
-  /* Penyesuaian ukuran ikon di input section */
+  .info-panel .icon,
+  .settings .icon,
   .input-section .icon {
     width: 1.2em;
     height: 1.2em;
   }
   
-  /* Penyesuaian ukuran ikon di close button */
   .close-button .icon {
     width: 1em;
     height: 1em;
   }
   
+  /* Tombol khusus */
   #btnPilihNama {
     background: linear-gradient(135deg, #28a745, #218838);
     font-size: 20px;
@@ -292,6 +273,10 @@
     width: 100%;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
   
   .close-button:hover {
@@ -306,9 +291,8 @@
   }
   
   /* ==========================================================================  
-     6. List, Results & Overlay Styles
+     7. Lists, Results & Overlay
      ========================================================================== */
-  
   .results {
     background: #fff;
     padding: 15px;
@@ -354,6 +338,7 @@
     margin: 0 0 15px 0;
   }
   
+  /* Pagination: Disesuaikan agar tampilannya mirip dengan tombol standar */
   .pagination {
     display: flex;
     justify-content: center;
@@ -362,30 +347,36 @@
   }
   
   .pagination button {
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #808080;
-    background: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 5px;
   }
   
   .pagination button:hover {
-    background-color: #f1f1f1;
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
   
-  .pagination button:focus {
-    outline: none;
+  .pagination button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
-  /* Gaya untuk container input pencarian */
+  /* Search Input & Icon */
   .search-input-container {
     position: relative;
     margin-bottom: 15px;
   }
   
-  /* Gaya untuk ikon pencarian */
   .search-icon {
     position: absolute;
     left: 10px;
@@ -393,14 +384,13 @@
     transform: translateY(-50%);
     width: 18px;
     height: 18px;
-    fill: #888; /* Warna ikon */
-    pointer-events: none; /* Agar ikon tidak mengganggu input */
+    fill: #888;
+    pointer-events: none;
   }
   
-  /* Gaya untuk input pencarian */
   #searchInput {
     width: 100%;
-    padding: 10px 12px 10px 36px; /* Padding kiri lebih besar untuk ikon */
+    padding: 10px 12px 10px 36px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -408,15 +398,15 @@
     box-sizing: border-box;
   }
   
-  /* Gaya saat input pencarian difokuskan */
   #searchInput:focus {
     outline: none;
     border-color: #28a745;
     box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
   }
   
-  
-  .overlay, .animation-overlay {
+  /* Overlay & Animation Overlay Styles */
+  .overlay,
+  .animation-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -433,55 +423,14 @@
     backdrop-filter: blur(5px);
   }
   
-  .overlay.active, .animation-overlay.active {
+  .overlay.active,
+  .animation-overlay.active {
     opacity: 1;
     visibility: visible;
   }
   
-  .overlay-content, .selected-names-list {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 600px;
-    width: 90%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    color: #333;
-    transform: scale(0.7);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  
-  .overlay.active .overlay-content,
-  .animation-overlay.active .selected-names-list {
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  /* Gaya untuk overlay */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    backdrop-filter: blur(5px);
-  }
-  
-  .overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  /* Gaya untuk konten overlay */
-  .overlay-content {
+  .overlay-content,
+  .selected-names-list {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -493,15 +442,15 @@
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
     max-height: 90vh; /* Membatasi tinggi maksimum */
-    overflow-y: auto; /* Menambahkan scroll jika konten terlalu panjang */
+    overflow-y: auto; /* Scroll bila konten terlalu panjang */
   }
   
-  .overlay.active .overlay-content {
+  .overlay.active .overlay-content,
+  .animation-overlay.active .selected-names-list {
     transform: scale(1);
     opacity: 1;
   }
   
-  /* Gaya untuk judul overlay */
   .overlay-content h2 {
     margin-top: 0;
     font-size: 24px;
@@ -511,7 +460,6 @@
     gap: 10px;
   }
   
-  /* Gaya untuk daftar di overlay */
   .overlay-content ul,
   .overlay-content ol {
     padding-left: 20px;
@@ -522,53 +470,9 @@
     margin-bottom: 10px;
   }
   
-  /* Gaya untuk tombol tutup di overlay */
-  .close-button {
-    background: #dc3545;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100%;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  
-  .close-button:hover {
-    background: #c82333;
-    transform: translateY(-2px);
-  }
-  
-  /* Responsif untuk layar kecil */
-  @media (max-width: 480px) {
-    .overlay-content {
-      padding: 15px;
-    }
-  
-    .overlay-content h2 {
-      font-size: 20px;
-    }
-  
-    .overlay-content ul,
-    .overlay-content ol {
-      padding-left: 15px;
-    }
-  
-    .close-button {
-      padding: 8px 16px;
-      font-size: 14px;
-    }
-  }
-  
   /* ==========================================================================  
-     7. Animations & Keyframes
+     8. Animations & Keyframes
      ========================================================================== */
-  
   @keyframes smoothShuffle {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     25% { transform: translateY(-10px) rotate(-2deg); opacity: 0.8; }
@@ -601,61 +505,8 @@
   }
   
   /* ==========================================================================  
-     8. Responsive Design
-     ========================================================================== */
-  
-  @media (max-width: 768px) {
-    .settings {
-      grid-template-columns: 1fr;
-    }
-  
-    .action-buttons {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-  
-    .info-panel {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    .header-section {
-      flex-direction: column; /* Menyusun elemen secara vertikal */
-      align-items: stretch; /* Memastikan elemen memenuhi lebar container */
-      padding: 15px;
-    }
-    .info-panel {
-      flex-direction: column; /* Menyusun elemen secara vertikal */
-      gap: 10px; /* Mengurangi jarak antara elemen */
-      padding: 10px;
-    }
-  
-    .info-panel div {
-      font-size: 14px; /* Mengurangi ukuran font untuk layar kecil */
-    }  
-  }
-  
-  @media (max-width: 480px) {
-    button {
-      padding: 10px 16px;
-      font-size: 14px;
-    }
-  
-    .tool-button {
-      min-width: auto;
-      flex: 1;
-    }
-  
-    .animation-toggle-container {
-      position: static;
-      margin-top: 10px;
-      justify-content: center;
-    }
-  }
-  
-  /* ==========================================================================  
      9. Utility Classes
      ========================================================================== */
-  
   .invalid {
     animation: shake 0.4s ease-in-out;
     border-color: #dc3545 !important;
@@ -679,7 +530,6 @@
   /* ==========================================================================  
      10. Message & Notification Styles
      ========================================================================== */
-  
   .message {
     position: fixed;
     bottom: 20px;
@@ -752,9 +602,8 @@
   }
   
   /* ==========================================================================  
-     11. Dark Mode
+     11. Dark Mode Styles
      ========================================================================== */
-  
   [data-theme="dark"] {
     background-color: #121212;
     color: #e0e0e0;
@@ -814,3 +663,237 @@
     border-color: rgba(255, 255, 255, 0.1);
     background: #1a1a1a;
   }
+  
+  /* ==========================================================================  
+     12. Media Queries (Dikelompokkan Berdasarkan Breakpoints)
+     ========================================================================== */
+  
+  /* --- Untuk layar maksimum 1200px --- */
+  @media screen and (max-width: 1200px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  /* --- Untuk layar maksimum 992px --- */
+  @media screen and (max-width: 992px) {
+    html {
+      font-size: 15px;
+    }
+  
+    .header-section h1 {
+      font-size: 22px;
+    }
+  
+    .tool-button {
+      padding: 10px 16px;
+      min-width: 120px;
+      font-size: 14px;
+    }
+  }
+  
+  /* --- Untuk layar maksimum 768px --- */
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  
+    .settings {
+      grid-template-columns: 1fr;
+    }
+  
+    .action-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+  
+    .header-section {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 15px;
+      gap: 12px;
+    }
+  
+    .header-section .button-panel {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .info-panel {
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 15px;
+    }
+  
+    .info-panel div {
+      width: 100%;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+  
+    .tool-button {
+      flex: 1 1 calc(50% - 10px);
+      min-width: 110px;
+      max-width: 160px;
+      padding: 10px 12px;
+    }
+  
+    #btnPilihNama {
+      font-size: 18px;
+      padding: 14px 20px;
+    }
+  
+    .results h3 {
+      font-size: 18px;
+    }
+  
+    .results li {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
+  
+  /* --- Untuk layar maksimum 480px --- */
+  @media (max-width: 480px) {
+    html {
+      font-size: 13px;
+    }
+  
+    .header-section {
+      padding: 12px;
+      gap: 10px;
+    }
+  
+    .header-section h1 {
+      font-size: 20px;
+    }
+  
+    button {
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+  
+    .tool-button {
+      flex: 1 1 100%;
+      max-width: none;
+      min-width: auto;
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+  
+    .settings label {
+      font-size: 13px;
+    }
+  
+    .settings input,
+    .settings select,
+    textarea,
+    input,
+    select {
+      padding: 6px;
+      font-size: 13px;
+      min-height: 44px; /* Improve touch target size */
+    }
+  
+    .animation-toggle-container {
+      position: static;
+      margin-top: 10px;
+      justify-content: center;
+    }
+  
+    #btnPilihNama {
+      font-size: 16px;
+      padding: 12px 16px;
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+  
+    .results {
+      padding: 12px;
+    }
+  
+    .results h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+  
+    .results li {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+  
+    .overlay-content {
+      padding: 12px;
+      width: 95%;
+      font-size: 14px;
+    }
+  
+    .overlay-content h2 {
+      font-size: 18px;
+    }
+  
+    .close-button {
+      padding: 8px 14px;
+      font-size: 13px;
+      min-height: 44px;
+    }
+  
+    .pagination button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      min-width: 48px;
+      min-height: 48px;
+    }
+  
+    /* Mobile-specific adjustments untuk messageArea */
+    #messageArea {
+      bottom: 10px;
+      left: 10px;
+      padding: 12px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      gap: 8px;
+    }
+  }
+  
+  /* --- Untuk perangkat sangat kecil (max-width: 360px) --- */
+  @media screen and (max-width: 360px) {
+    html {
+      font-size: 12px;
+    }
+  
+    .header-section h1 {
+      font-size: 18px;
+    }
+  
+    .tool-button {
+      padding: 8px 10px;
+    }
+  
+    .info-panel {
+      padding: 10px;
+    }
+  
+    .info-panel div {
+      font-size: 12px;
+    }
+  }
+  
+  /* --- Untuk orientasi landscape dengan max-height: 500px --- */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+    .header-section {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  
+    .button-panel {
+      justify-content: flex-end;
+    }
+  
+    .tool-button {
+      flex: 0 1 auto;
+    }
+  }
+  
