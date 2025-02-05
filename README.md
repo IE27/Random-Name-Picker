@@ -2,7 +2,7 @@
 
 Random Name Picker adalah alat sederhana untuk memilih nama secara acak dari daftar yang Anda masukkan. Alat ini cocok digunakan untuk pengundian, pemilihan pemenang, atau kegiatan acak lainnya. Dibangun dengan HTML, CSS, dan JavaScript, alat ini ringan, responsif, dan mudah digunakan.
 
-![Random Name Picker Screenshot](screenshot.png) <!-- Ganti dengan link screenshot jika ada -->
+Live Preview : https://www.tutfix.id/p/random-picker.html
 
 ---
 
