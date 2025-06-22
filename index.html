@@ -8,16 +8,14 @@
     <!-- Hubungkan CSS -->
     <link rel="stylesheet" href="RNP_v2.css">
 
-    <!-- Styling default (opsional) untuk mereset margin, padding, dan memberikan tampilan dasar -->
+    <!-- Styling default -->
     <style>
-        /* Reset sederhana untuk semua elemen */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Styling dasar untuk body */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -25,25 +23,13 @@
             color: #333;
         }
 
-        /* Styling dasar untuk heading */
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        /* Styling dasar untuk paragraf */
-        p {
-            margin-bottom: 10px;
-        }
-
-        /* Contoh styling untuk container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* New styles for enhancements */
+        /* Header Styles */
         .app-header {
             background-color: #4285f4;
             color: white;
@@ -96,6 +82,7 @@
             background: rgba(255,255,255,0.2);
         }
 
+        /* Footer Styles */
         .app-footer {
             background-color: #f5f5f5;
             padding: 1.5rem 2rem;
@@ -128,49 +115,33 @@
             font-size: 0.9rem;
         }
 
-        .social-sharing {
-            margin: 1rem 0;
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
+            z-index: 1000;
+            display: none;
         }
 
-        .social-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4285f4;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
         }
 
-        .social-icon {
-            width: 20px;
-            height: 20px;
-            fill: #4285f4;
-        }
-
-        /* Dark theme styles */
-        .dark-theme {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        .dark-theme .app-footer {
-            background-color: #1e1e1e;
-            border-top-color: #333;
-        }
-
-        .dark-theme .random-name-picker-container {
-            background-color: #1e1e1e;
-            border-color: #333;
-        }
-
-        .dark-theme input,
-        .dark-theme textarea,
-        .dark-theme select {
-            background-color: #333;
-            color: #fff;
-            border-color: #555;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive adjustments */
@@ -193,7 +164,12 @@
 </head>
 
 <body>
-<!-- New Professional Header -->
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>
+
+<!-- Professional Header -->
 <header class="app-header">
     <div class="header-content">
         <div class="branding">
@@ -205,13 +181,14 @@
         <nav class="header-nav">
             <button class="nav-button" onclick="showGuide()">Documentation</button>
             <button class="nav-button" onclick="showVersion()">Changelog</button>
-            <button class="nav-button" id="themeToggle">Dark Mode</button>
+            <button class="nav-button" onclick="saveCurrentSession()">Save Session</button>
         </nav>
     </div>
 </header>
 
 <div class="container">
     <div class="random-name-picker-container">
+        <!-- Existing content remains exactly the same -->
         <!-- Header Section -->
         <div class="header-section">
             <!-- Tombol Panduan dan Versi -->
@@ -451,6 +428,12 @@
                 </svg>
                 Import
             </button>
+            <button class="tool-button" onclick="copySelectedNames()">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                Copy Selected
+            </button>
         </div>
 
         <input type="file" id="importFile" style="display: none;" onchange="importDaftarNama(event)">
@@ -506,26 +489,13 @@
     </div>
 </div>
 
-<!-- New Professional Footer -->
+<!-- Professional Footer -->
 <footer class="app-footer">
     <div class="footer-content">
         <div class="footer-links">
             <a href="#" onclick="showGuide()">Documentation</a>
             <a href="#" onclick="showVersion()">Version History</a>
             <a href="#" id="feedbackLink">Send Feedback</a>
-        </div>
-        <div class="social-sharing">
-            <span>Share: </span>
-            <button class="social-button" onclick="shareOnTwitter()">
-                <svg class="social-icon" viewBox="0 0 24 24">
-                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                </svg>
-            </button>
-            <button class="social-button" onclick="shareOnFacebook()">
-                <svg class="social-icon" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                </svg>
-            </button>
         </div>
         <div class="copyright">
             &copy; <span id="currentYear"></span> Random Name Picker Pro. All rights reserved.
@@ -538,13 +508,6 @@
 
 <!-- New JavaScript Enhancements -->
 <script>
-    // Theme toggle functionality
-    document.getElementById('themeToggle').addEventListener('click', function() {
-        document.body.classList.toggle('dark-theme');
-        this.textContent = document.body.classList.contains('dark-theme') ? 'Light Mode' : 'Dark Mode';
-        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
-    });
-
     // Set current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -554,27 +517,69 @@
         const feedback = prompt('We appreciate your feedback! Please share your thoughts:');
         if (feedback) {
             showMessage('Thank you for your feedback!', 'success');
-            // Here you would typically send the feedback to your server
         }
     });
 
-    // Load saved theme
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
-        document.getElementById('themeToggle').textContent = 'Light Mode';
+    // Show loading overlay
+    function showLoading() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
     }
 
-    // Social sharing functions
-    function shareOnTwitter() {
-        const text = "Check out this awesome Random Name Picker tool!";
-        const url = window.location.href;
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    // Hide loading overlay
+    function hideLoading() {
+        document.getElementById('loadingOverlay').style.display = 'none';
     }
 
-    function shareOnFacebook() {
-        const url = window.location.href;
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    // Save current session to localStorage
+    function saveCurrentSession() {
+        showLoading();
+        setTimeout(() => {
+            const names = document.getElementById('inputNama').value;
+            const selectedNames = Array.from(document.querySelectorAll('#namaTerpilihList li')).map(li => li.textContent);
+            
+            localStorage.setItem('rnp_names', names);
+            localStorage.setItem('rnp_selected', JSON.stringify(selectedNames));
+            
+            hideLoading();
+            showMessage('Session saved successfully!', 'success');
+        }, 500);
     }
+
+    // Load saved session
+    function loadSavedSession() {
+        const savedNames = localStorage.getItem('rnp_names');
+        const savedSelected = localStorage.getItem('rnp_selected');
+        
+        if (savedNames) {
+            document.getElementById('inputNama').value = savedNames;
+            setDaftarNama();
+        }
+        
+        if (savedSelected) {
+            const selectedNames = JSON.parse(savedSelected);
+            selectedNames.forEach(name => {
+                addToSelectedNames(name);
+            });
+            updateTotalPemenang();
+        }
+    }
+
+    // Copy selected names to clipboard
+    function copySelectedNames() {
+        const selectedNames = Array.from(document.querySelectorAll('#namaTerpilihList li')).map(li => li.textContent);
+        
+        if (selectedNames.length === 0) {
+            showMessage('No names selected to copy', 'error');
+            return;
+        }
+        
+        navigator.clipboard.writeText(selectedNames.join('\n'))
+            .then(() => showMessage('Selected names copied to clipboard!', 'success'))
+            .catch(() => showMessage('Failed to copy names', 'error'));
+    }
+
+    // Load saved session when page loads
+    window.addEventListener('DOMContentLoaded', loadSavedSession);
 </script>
 
 </body>
