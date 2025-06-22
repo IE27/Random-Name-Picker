@@ -8,341 +8,574 @@
     <!-- Hubungkan CSS -->
     <link rel="stylesheet" href="RNP_v2.css">
 
-      <!-- Styling default (opsional) untuk mereset margin, padding, dan memberikan tampilan dasar -->
-  <style>
-    /* Reset sederhana untuk semua elemen */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Styling default (opsional) untuk mereset margin, padding, dan memberikan tampilan dasar -->
+    <style>
+        /* Reset sederhana untuk semua elemen */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Styling dasar untuk body */
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f5f5f5;
-      color: #333;
-      padding: 20px;
-    }
+        /* Styling dasar untuk body */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
 
-    /* Styling dasar untuk heading */
-    h1, h2, h3, h4, h5, h6 {
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+        /* Styling dasar untuk heading */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-    /* Styling dasar untuk paragraf */
-    p {
-      margin-bottom: 10px;
-    }
+        /* Styling dasar untuk paragraf */
+        p {
+            margin-bottom: 10px;
+        }
 
-    /* Contoh styling untuk container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-  </style>
+        /* Contoh styling untuk container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
+        /* New styles for enhancements */
+        .app-header {
+            background-color: #4285f4;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .branding h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .app-footer {
+            background-color: #f5f5f5;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #4285f4;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .social-sharing {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            fill: #4285f4;
+        }
+
+        /* Dark theme styles */
+        .dark-theme {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-theme .app-footer {
+            background-color: #1e1e1e;
+            border-top-color: #333;
+        }
+
+        .dark-theme .random-name-picker-container {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+
+        .dark-theme input,
+        .dark-theme textarea,
+        .dark-theme select {
+            background-color: #333;
+            color: #fff;
+            border-color: #555;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .branding h1 {
+                font-size: 1.2rem;
+            }
+            
+            .header-nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<div class="random-name-picker-container">
-  <!-- Header Section -->
-  <div class="header-section">
-    <!-- Tombol Panduan dan Versi -->
-    <div class="button-panel">
-      <button class="tool-button" onclick="showGuide()">
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-        </svg>
-        Panduan
-      </button>
-      <button class="tool-button" onclick="showVersion()">
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-        </svg>
-        Versi 2.2
-      </button>
+<!-- New Professional Header -->
+<header class="app-header">
+    <div class="header-content">
+        <div class="branding">
+            <svg class="logo-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+            <h1>Random Name Picker Pro</h1>
+        </div>
+        <nav class="header-nav">
+            <button class="nav-button" onclick="showGuide()">Documentation</button>
+            <button class="nav-button" onclick="showVersion()">Changelog</button>
+            <button class="nav-button" id="themeToggle">Dark Mode</button>
+        </nav>
     </div>
+</header>
 
-    <!-- Info Panel -->
-    <div class="info-panel">
-      <div>
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
-        </svg>
-        Total: <span id="totalNama">178</span>
-      </div>
-      <div>
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/>
-        </svg>
-        Selected: <span id="totalPemenang">0</span>
-      </div>
+<div class="container">
+    <div class="random-name-picker-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <!-- Tombol Panduan dan Versi -->
+            <div class="button-panel">
+                <button class="tool-button" onclick="showGuide()">
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    Panduan
+                </button>
+                <button class="tool-button" onclick="showVersion()">
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    Versi 2.2
+                </button>
+            </div>
+
+            <!-- Info Panel -->
+            <div class="info-panel">
+                <div>
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+                    </svg>
+                    Total: <span id="totalNama">178</span>
+                </div>
+                <div>
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/>
+                    </svg>
+                    Selected: <span id="totalPemenang">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay Panduan -->
+        <div id="guideOverlay" class="overlay">
+            <div class="overlay-content" onclick="event.stopPropagation()">
+                <h2>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    Panduan Penggunaan
+                </h2>
+                <p>Berikut adalah panduan lengkap untuk menggunakan Random Name Picker:</p>
+                <ol>
+                    <li>
+                        <strong>Masukkan Nama:</strong>
+                        <ul>
+                            <li>Masukkan daftar nama di textarea yang disediakan.</li>
+                            <li>Pisahkan nama dengan baris baru, koma (<code>,</code>), atau titik koma (<code>;</code>) sesuai pilihan Anda.</li>
+                            <li>Contoh: <code>John Doe, Jane Smith, Alice Johnson</code>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Setel Daftar:</strong>
+                        <ul>
+                            <li>Klik tombol <strong>"Setel Daftar"</strong> untuk menyimpan daftar nama.</li>
+                            <li>Pastikan daftar nama sudah benar sebelum melanjutkan.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Pilih Pemenang:</strong>
+                        <ul>
+                            <li>Tentukan jumlah pemenang di kolom <strong>"Winners"</strong>.</li>
+                            <li>Klik tombol <strong>"Pick Random Name"</strong> untuk memilih pemenang secara acak.</li>
+                            <li>Nama yang terpilih akan ditampilkan di bagian <strong>"Selected Names"</strong>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Acak Ulang:</strong>
+                        <ul>
+                            <li>Klik tombol <strong>"Acak Ulang"</strong> untuk mengacak ulang daftar nama.</li>
+                            <li>Ini berguna jika Anda ingin memastikan hasil yang benar-benar acak.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Reset:</strong>
+                        <ul>
+                            <li>Klik tombol <strong>"Reset"</strong> untuk mengembalikan daftar nama ke keadaan semula.</li>
+                            <li>Semua nama yang terpilih akan dihapus.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Ekspor/Impor:</strong>
+                        <ul>
+                            <li>Gunakan tombol <strong>"Ekspor"</strong> untuk menyimpan daftar nama ke file.</li>
+                            <li>Gunakan tombol <strong>"Import"</strong> untuk memuat daftar nama dari file.</li>
+                            <li>Format file yang didukung: <code>.txt</code>.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <button class="close-button" onclick="closeOverlay('guideOverlay')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                    Tutup
+                </button>
+            </div>
+        </div>
+
+        <!-- Version Overlay -->
+        <div id="versionOverlay" class="overlay">
+            <div class="overlay-content" onclick="event.stopPropagation()">
+                <h2>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    Versi 2.2
+                </h2>
+                <p>Berikut adalah riwayat pembaruan Random Name Picker:</p>
+                <ul>
+                    <li><strong>Versi 2.2 (Oktober 2023):</strong>
+                        <ul>
+                            <li>Mengganti semua emoji dengan ikon SVG inline untuk tampilan yang lebih profesional.</li>
+                            <li>Memperbaiki responsivitas <code>info-panel</code> di <code>.header-section</code>.</li>
+                            <li>Memperbaiki tampilan overlay (panduan, versi, dan lainnya) agar lebih rapi dan memiliki scroll yang baik.</li>
+                            <li>Memperbarui konten panduan penggunaan dengan penjelasan yang lebih detail.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Versi 2.1 (February 2025):</strong>
+                        <ul>
+                            <li>Penyederhanaan antarmuka dengan menghapus toggle animasi.</li>
+                            <li>Peningkatan performa animasi pemilihan nama.</li>
+                            <li>Perbaikan tata letak dan spacing pada header.</li>
+                            <li>Optimalisasi tampilan untuk berbagai ukuran layar.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Versi 2.0:</strong>
+                        <ul>
+                            <li>Penambahan fitur animasi saat memilih pemenang.</li>
+                            <li>Penambahan fitur pagination untuk daftar nama terpilih.</li>
+                            <li>Penambahan fitur pencarian pada daftar nama terpilih.</li>
+                            <li>Perbaikan bug dan peningkatan performa.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Versi 1.0:</strong>
+                        <ul>
+                            <li>Rilis awal Random Name Picker.</li>
+                            <li>Fitur dasar pemilihan nama acak.</li>
+                            <li>Manajemen daftar nama dasar.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="close-button" onclick="closeOverlay('versionOverlay')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                    Tutup
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="settings">
+            <div>
+                <label for="jumlahPemenang">
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+                    </svg>
+                    Winners:
+                </label>
+                <input type="number" id="jumlahPemenang" min="1" max="10" value="1">
+            </div>
+            
+            <div>
+                <label for="metodePisahNama">
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
+                    </svg>
+                    Separator:
+                </label>
+                <select id="metodePisahNama" onchange="updatePlaceholder()">
+                    <option value="newline">New Line</option>
+                    <option value="comma">Comma (,)</option>
+                    <option value="semicolon">Semicolon (;)</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="durasiPengacakan">
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/>
+                    </svg>
+                    Shuffle:
+                </label>
+                <input type="number" id="durasiPengacakan" min="1" max="10" value="2">
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <label for="inputNama">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                </svg>
+                Masukkan Nama:
+            </label>
+            <textarea id="inputNama" rows="6" placeholder="Pisahkan nama dengan baris baru"></textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="tool-button" onclick="setDaftarNama()">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+                </svg>
+                Setel Daftar
+            </button>
+            <button class="tool-button" onclick="acakUlangDaftarNama()">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+                </svg>
+                Acak Ulang
+            </button>
+            <button class="tool-button" onclick="resetDaftarNama()">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+                Reset
+            </button>
+            <button class="tool-button" onclick="clearAllData()">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+                Hapus Data
+            </button>
+            <button class="tool-button" onclick="exportDaftarNama()">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
+                </svg>
+                Ekspor
+            </button>
+            <button class="tool-button" onclick="document.getElementById('importFile').click()">
+                <svg class="icon" viewBox="0 0 24 24" >
+                    <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm3-10.17L14.17 8H13v6h-2V8H9.83L12 5.83zM5 18h14v2H5z"/>
+                </svg>
+                Import
+            </button>
+        </div>
+
+        <input type="file" id="importFile" style="display: none;" onchange="importDaftarNama(event)">
+
+        <!-- Pick Random Name Button -->
+        <button class="tool-button" id="btnPilihNama" onclick="pilihNamaAcak()">
+            <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/>
+            </svg>
+            Pick Random Name
+        </button>
+
+        <!-- Results -->
+        <div class="results">
+            <h3>
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+                </svg>
+                Selected Names:
+            </h3>
+            <div class="search-input-container">
+                <svg class="icon search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Cari nama..." oninput="searchNames()">
+            </div>
+            <ul id="namaTerpilihList"></ul>
+            <div id="paginationContainer" class="pagination"></div>
+        </div>
+
+        <!-- Animation Overlay -->
+        <div id="animationOverlay" class="animation-overlay">
+            <div class="animation-content" id="animationContent"></div>
+            <div class="selected-names-list" onclick="event.stopPropagation()">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+                    </svg>
+                    Selected Names:
+                </h3>
+                <ul id="selectedNames"></ul>
+                <button class="close-button" onclick="closeOverlay('animationOverlay')">
+                    <svg class="icon" viewBox="0 0 24 24" >
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <!-- Message Area -->
+        <div id="messageArea" class="message"></div>
     </div>
-  </div>
-
-  <!-- Overlay Panduan -->
-<div id="guideOverlay" class="overlay">
-  <div class="overlay-content" onclick="event.stopPropagation()">
-    <h2>
-      <svg class="icon" viewBox="0 0 24 24">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-      </svg>
-      Panduan Penggunaan
-    </h2>
-    <p>Berikut adalah panduan lengkap untuk menggunakan Random Name Picker:</p>
-    <ol>
-      <li>
-        <strong>Masukkan Nama:</strong>
-        <ul>
-          <li>Masukkan daftar nama di textarea yang disediakan.</li>
-          <li>Pisahkan nama dengan baris baru, koma (<code>,</code>), atau titik koma (<code>;</code>) sesuai pilihan Anda.</li>
-          <li>Contoh: <code>John Doe, Jane Smith, Alice Johnson</code>.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Setel Daftar:</strong>
-        <ul>
-          <li>Klik tombol <strong>"Setel Daftar"</strong> untuk menyimpan daftar nama.</li>
-          <li>Pastikan daftar nama sudah benar sebelum melanjutkan.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Pilih Pemenang:</strong>
-        <ul>
-          <li>Tentukan jumlah pemenang di kolom <strong>"Winners"</strong>.</li>
-          <li>Klik tombol <strong>"Pick Random Name"</strong> untuk memilih pemenang secara acak.</li>
-          <li>Nama yang terpilih akan ditampilkan di bagian <strong>"Selected Names"</strong>.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Acak Ulang:</strong>
-        <ul>
-          <li>Klik tombol <strong>"Acak Ulang"</strong> untuk mengacak ulang daftar nama.</li>
-          <li>Ini berguna jika Anda ingin memastikan hasil yang benar-benar acak.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Reset:</strong>
-        <ul>
-          <li>Klik tombol <strong>"Reset"</strong> untuk mengembalikan daftar nama ke keadaan semula.</li>
-          <li>Semua nama yang terpilih akan dihapus.</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Ekspor/Impor:</strong>
-        <ul>
-          <li>Gunakan tombol <strong>"Ekspor"</strong> untuk menyimpan daftar nama ke file.</li>
-          <li>Gunakan tombol <strong>"Import"</strong> untuk memuat daftar nama dari file.</li>
-          <li>Format file yang didukung: <code>.txt</code>.</li>
-        </ul>
-      </li>
-    </ol>
-    <button class="close-button" onclick="closeOverlay('guideOverlay')">
-      <svg class="icon" viewBox="0 0 24 24">
-        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-      </svg>
-      Tutup
-    </button>
-  </div>
 </div>
 
-  <!-- Version Overlay -->
-<div id="versionOverlay" class="overlay">
-  <div class="overlay-content" onclick="event.stopPropagation()">
-    <h2>
-      <svg class="icon" viewBox="0 0 24 24">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-      </svg>
-      Versi 2.2
-    </h2>
-    <p>Berikut adalah riwayat pembaruan Random Name Picker:</p>
-    <ul>
-      <li><strong>Versi 2.2 (Oktober 2023):</strong>
-        <ul>
-          <li>Mengganti semua emoji dengan ikon SVG inline untuk tampilan yang lebih profesional.</li>
-          <li>Memperbaiki responsivitas <code>info-panel</code> di <code>.header-section</code>.</li>
-          <li>Memperbaiki tampilan overlay (panduan, versi, dan lainnya) agar lebih rapi dan memiliki scroll yang baik.</li>
-          <li>Memperbarui konten panduan penggunaan dengan penjelasan yang lebih detail.</li>
-        </ul>
-      </li>
-      <li><strong>Versi 2.1 (February 2025):</strong>
-        <ul>
-          <li>Penyederhanaan antarmuka dengan menghapus toggle animasi.</li>
-          <li>Peningkatan performa animasi pemilihan nama.</li>
-          <li>Perbaikan tata letak dan spacing pada header.</li>
-          <li>Optimalisasi tampilan untuk berbagai ukuran layar.</li>
-        </ul>
-      </li>
-      <li><strong>Versi 2.0:</strong>
-        <ul>
-          <li>Penambahan fitur animasi saat memilih pemenang.</li>
-          <li>Penambahan fitur pagination untuk daftar nama terpilih.</li>
-          <li>Penambahan fitur pencarian pada daftar nama terpilih.</li>
-          <li>Perbaikan bug dan peningkatan performa.</li>
-        </ul>
-      </li>
-      <li><strong>Versi 1.0:</strong>
-        <ul>
-          <li>Rilis awal Random Name Picker.</li>
-          <li>Fitur dasar pemilihan nama acak.</li>
-          <li>Manajemen daftar nama dasar.</li>
-        </ul>
-      </li>
-    </ul>
-    <button class="close-button" onclick="closeOverlay('versionOverlay')">
-      <svg class="icon" viewBox="0 0 24 24">
-        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-      </svg>
-      Tutup
-    </button>
-  </div>
-</div>
-
-  <!-- Settings -->
-  <div class="settings">
-    <div>
-      <label for="jumlahPemenang">
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
-        </svg>
-        Winners:
-      </label>
-      <input type="number" id="jumlahPemenang" min="1" max="10" value="1">
+<!-- New Professional Footer -->
+<footer class="app-footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#" onclick="showGuide()">Documentation</a>
+            <a href="#" onclick="showVersion()">Version History</a>
+            <a href="#" id="feedbackLink">Send Feedback</a>
+        </div>
+        <div class="social-sharing">
+            <span>Share: </span>
+            <button class="social-button" onclick="shareOnTwitter()">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                </svg>
+            </button>
+            <button class="social-button" onclick="shareOnFacebook()">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="copyright">
+            &copy; <span id="currentYear"></span> Random Name Picker Pro. All rights reserved.
+        </div>
     </div>
-    
-    <div>
-      <label for="metodePisahNama">
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
-        </svg>
-        Separator:
-      </label>
-      <select id="metodePisahNama" onchange="updatePlaceholder()">
-        <option value="newline">New Line</option>
-        <option value="comma">Comma (,)</option>
-        <option value="semicolon">Semicolon (;)</option>
-      </select>
-    </div>
+</footer>
 
-    <div>
-      <label for="durasiPengacakan">
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/>
-        </svg>
-        Shuffle:
-      </label>
-      <input type="number" id="durasiPengacakan" min="1" max="10" value="2">
-    </div>
-  </div>
+<!-- Hubungkan JavaScript -->
+<script src="RNP_v2.js"></script>
 
-  <!-- Input Section -->
-  <div class="input-section">
-    <label for="inputNama">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-      </svg>
-      Masukkan Nama:
-    </label>
-    <textarea id="inputNama" rows="6" placeholder="Pisahkan nama dengan baris baru"></textarea>
-  </div>
+<!-- New JavaScript Enhancements -->
+<script>
+    // Theme toggle functionality
+    document.getElementById('themeToggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+        this.textContent = document.body.classList.contains('dark-theme') ? 'Light Mode' : 'Dark Mode';
+        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+    });
 
-  <!-- Action Buttons -->
-  <div class="action-buttons">
-    <button class="tool-button" onclick="setDaftarNama()">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
-      </svg>
-      Setel Daftar
-    </button>
-    <button class="tool-button" onclick="acakUlangDaftarNama()">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
-      </svg>
-      Acak Ulang
-    </button>
-    <button class="tool-button" onclick="resetDaftarNama()">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-      </svg>
-      Reset
-    </button>
-    <button class="tool-button" onclick="clearAllData()">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-      </svg>
-      Hapus Data
-    </button>
-    <button class="tool-button" onclick="exportDaftarNama()">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
-      </svg>
-      Ekspor
-    </button>
-    <button class="tool-button" onclick="document.getElementById('importFile').click()">
-      <svg class="icon" viewBox="0 0 24 24" >
-        <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm3-10.17L14.17 8H13v6h-2V8H9.83L12 5.83zM5 18h14v2H5z"/>
-      </svg>
-      Import
-    </button>
-  </div>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-  <input type="file" id="importFile" style="display: none;" onchange="importDaftarNama(event)">
+    // Feedback system
+    document.getElementById('feedbackLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        const feedback = prompt('We appreciate your feedback! Please share your thoughts:');
+        if (feedback) {
+            showMessage('Thank you for your feedback!', 'success');
+            // Here you would typically send the feedback to your server
+        }
+    });
 
-  <!-- Pick Random Name Button -->
-  <button class="tool-button" id="btnPilihNama" onclick="pilihNamaAcak()">
-    <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"/>
-    </svg>
-    Pick Random Name
-  </button>
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.getElementById('themeToggle').textContent = 'Light Mode';
+    }
 
-  <!-- Results -->
-<div class="results">
-  <h3>
-    <svg class="icon" viewBox="0 0 24 24">
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
-    </svg>
-    Selected Names:
-  </h3>
-  <div class="search-input-container">
-    <svg class="icon search-icon" viewBox="0 0 24 24">
-      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-    </svg>
-    <input type="text" id="searchInput" placeholder="Cari nama..." oninput="searchNames()">
-  </div>
-  <ul id="namaTerpilihList"></ul>
-  <div id="paginationContainer" class="pagination"></div>
-</div>
+    // Social sharing functions
+    function shareOnTwitter() {
+        const text = "Check out this awesome Random Name Picker tool!";
+        const url = window.location.href;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
 
-  <!-- Animation Overlay -->
-  <div id="animationOverlay" class="animation-overlay">
-    <div class="animation-content" id="animationContent"></div>
-    <div class="selected-names-list" onclick="event.stopPropagation()">
-      <h3>
-        <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
-          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
-        </svg>
-        Selected Names:
-      </h3>
-      <ul id="selectedNames"></ul>
-      <button class="close-button" onclick="closeOverlay('animationOverlay')">
-        <svg class="icon" viewBox="0 0 24 24" >
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        </svg>
-        Close
-      </button>
-    </div>
-  </div>
+    function shareOnFacebook() {
+        const url = window.location.href;
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    }
+</script>
 
-  <!-- Message Area -->
-  <div id="messageArea" class="message"></div>
-</div>
-
-    <!-- Hubungkan JavaScript -->
-    <script src="RNP_v2.js"></script>
-
-  </body>
+</body>
 </html>
